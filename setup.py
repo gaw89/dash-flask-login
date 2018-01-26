@@ -1,7 +1,6 @@
 from setuptools import setup
-
 import io
-exec(open('dash-flask-login/version.py').read())
+from dash_flask_login import __version__
 
 setup(
     name='dash_flask_login',
@@ -21,16 +20,14 @@ setup(
     ],
     include_package_data=True,
     url='https://github.com/gaw89/dash-flask-login',
-    classifiers=[
-        'Development Status :: 5 - Production/Stable',
-        'Environment :: Web Environment',
-        'Framework :: Dash/Flask',
-        'Intended Audience :: Dash Developers/Users',
+    classifiers = [
+        'Intended Audience :: Developers',
+        'Topic :: Utilities',
+        'Natural Language :: English',
+        'Operating System :: OS Independent',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
-    ]
+    ],
 )
