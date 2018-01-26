@@ -1,0 +1,2 @@
+include README.md
+recursive-include dash_auth/templates *
