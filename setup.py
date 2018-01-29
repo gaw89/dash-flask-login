@@ -8,6 +8,7 @@ setup(
     author='Gideon Whitehead',
     author_email='gideon.whitehead@uphs.upenn.edu',
     packages=['dash_flask_login'],
+    package_data={'': ['dash_flask_login/templates/*.html']}
     license='MIT',
     description='Integration of Dash with Flask-Login',
     long_description=io.open('README.md', encoding='utf-8').read(),
