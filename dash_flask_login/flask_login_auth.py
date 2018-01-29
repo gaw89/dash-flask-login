@@ -17,7 +17,7 @@ except ImportError:
 TEMPLATE_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
 
 class FlaskLoginAuth():
-    def __init__(self, app, use_default_views=False, users=None, auto_hash=True, hash_function=None):
+    def __init__(self, app, server, use_default_views=False, users=None, auto_hash=True, hash_function=None):
         """
         app: A Dash object to be login-protected
         use_default_views: If set to True, default views will be set for login and logout
@@ -35,7 +35,7 @@ class FlaskLoginAuth():
         to be used in user creation and login.
         """
         self.initial_app = app
-        self.server = self.initial_app.server
+        self.server = server
         self.apps_list = [app]
 
         # Protect all views
@@ -148,7 +148,7 @@ class FlaskLoginAuth():
         Alter the view functions of the server to require login.
         """
         for app in self.apps_list:
-            for view_func in app.server.view_functions.keys():
+            for view_func in self.server.view_functions:
                 if view_func.startswith(app.url_base_pathname):
                     self.server.view_functions[view_func] = login_required(self.server.view_functions[view_func])
 
