@@ -150,7 +150,7 @@ class FlaskLoginAuth():
         for app in self.apps_list:
             for view_func in app.server.view_functions.keys():
                 if view_func.startswith(app.url_base_pathname):
-                    app.server.view_functions[view_func] = login_required(app.server.view_functions[view_func])
+                    self.server.view_functions[view_func] = login_required(self.server.view_functions[view_func])
 
     def serve_default_views(self):
 
