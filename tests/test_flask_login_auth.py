@@ -5,7 +5,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output, State
 from dash import Dash
-from dash_auth import FlaskLoginAuth
+from dash_flask_login import FlaskLoginAuth
 import sqlite3
 import hashlib
 from flask_login import UserMixin
