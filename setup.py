@@ -17,7 +17,9 @@ setup(
         'flask-compress',
         'flask-seasurf',
         'plotly',
-        'dash>=0.18.3'
+        'dash>=0.18.3',
+        'jinja2==2.10',
+        'flask_login==0.4.1'
     ],
     include_package_data=True,
     url='https://github.com/gaw89/dash-flask-login',
