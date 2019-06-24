@@ -18,7 +18,7 @@ setup(
         'flask-seasurf',
         'plotly',
         'dash>=0.18.3',
-        'jinja2==2.10',
+        'Jinja2>=2.10.1',
         'flask_login==0.4.1'
     ],
     include_package_data=True,
