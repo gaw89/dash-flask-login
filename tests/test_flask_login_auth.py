@@ -6,10 +6,7 @@ import dash_html_components as html
 from dash.dependencies import Input, Output, State
 from dash import Dash
 from dash_flask_login import FlaskLoginAuth
-import sqlite3
-import hashlib
 from flask_login import UserMixin
-import pprint
 
 class FlaskLoginAuthTest(unittest.TestCase):
     # Test FlaskLoginAuth functionality
