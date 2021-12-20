@@ -6,10 +6,7 @@ import dash_html_components as html
 from dash.dependencies import Input, Output, State
 from dash import Dash
 from dash_flask_login import FlaskLoginAuth
-import sqlite3
-import hashlib
 from flask_login import UserMixin
-import pprint
 
 class FlaskLoginAuthTest(unittest.TestCase):
     # Test FlaskLoginAuth functionality
@@ -22,17 +19,17 @@ class FlaskLoginAuthTest(unittest.TestCase):
             SECRET_KEY = os.urandom(12),
         )
 
-        self.app = Dash(name='app1', url_base_pathname='/app1', server=server)
+        self.app = Dash(name='app1', url_base_pathname='/app1/', server=server)
         self.app.layout = html.Div('Hello World!')
 
-        self.add_auth_app = Dash(name='add_auth_app', url_base_pathname='/add-auth-app', server=server)
+        self.add_auth_app = Dash(name='add_auth_app', url_base_pathname='/add-auth-app/', server=server)
         self.add_auth_app.layout = html.Div('Hello World!')
 
-        self.multi_app_no_auth = Dash(name='multi_app_no_auth', url_base_pathname='/app-no-auth', server=server)
+        self.multi_app_no_auth = Dash(name='multi_app_no_auth', url_base_pathname='/app-no-auth/', server=server)
         self.multi_app_no_auth.layout = html.Div('Hello World!')
 
         # Will raise an error because it doesn't have the same server
-        self.crash_app = Dash(name='crash', url_base_pathname='/crash-app')
+        self.crash_app = Dash(name='crash', url_base_pathname='/crash-app/')
         self.crash_app.layout = html.Div('Goodby Cruel World!')
 
         self.server = server.test_client()
@@ -56,23 +53,23 @@ class FlaskLoginAuthTest(unittest.TestCase):
         response = self.server.get('/logout',)
         self.assertEqual(response.status_code, 302, 'Not logged in yet, server should redirect.')
 
-        response = self.server.get('/app1',)
+        response = self.server.get('/app1/',)
         self.assertEqual(response.status_code, 302, 'Not logged in yet, server should redirect.')
 
         self.login_user(username, password)
 
-        response = self.server.get('/app1',)
+        response = self.server.get('/app1/',)
         self.assertEqual(response.status_code, 200, 'Logged in, should be 200 Okay')
 
         response = self.server.get('/logout',)
         self.assertEqual(response.status_code, 200, 'Logged in, should be 200 Okay')
 
         # Check that logout has worked
-        response = self.server.get('/app1',)
+        response = self.server.get('/app1/',)
         self.assertEqual(response.status_code, 302, 'If logged out successfully, server should redirect.')
 
     def test_app_no_auth(self):
-        response = self.server.get('/app1', follow_redirects=True)
+        response = self.server.get('/app1/', follow_redirects=True)
         self.assertEqual(response.status_code, 200)
         self.assertTrue('<title>Dash</title>' in response.data)
 
@@ -157,7 +154,7 @@ class FlaskLoginAuthTest(unittest.TestCase):
 
         auth = FlaskLoginAuth(self.app, use_default_views=True)
 
-        response = self.server.get('/app-no-auth')
+        response = self.server.get('/app-no-auth/')
         self.assertEqual(response.status_code, 200)
 
     def test_multi_app_second_app_with_auth(self):
@@ -166,17 +163,17 @@ class FlaskLoginAuthTest(unittest.TestCase):
         auth.add_app(self.add_auth_app)
 
         # Not logged in yet
-        response = self.server.get('/add-auth-app')
+        response = self.server.get('/add-auth-app/')
         self.assertEqual(response.status_code, 302)
 
         # Does not require login
-        response = self.server.get('/app-no-auth')
+        response = self.server.get('/app-no-auth/')
         self.assertEqual(response.status_code, 200)
 
         self.login_user('admin','admin')
 
         # Logged in
-        response = self.server.get('/add-auth-app')
+        response = self.server.get('/add-auth-app/')
         self.assertEqual(response.status_code, 200)
 
 

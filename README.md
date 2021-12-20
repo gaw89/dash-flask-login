@@ -5,7 +5,9 @@
 
 Dash-Admin is intended to be plug and play!  Providing user authentication should be as simple as:
 
+```
 auth = FlaskLoginAuth(dash_app)
+```
 
 ### Documentation
 

@@ -1,0 +1,2 @@
+dash>=2.0.0
+flask-login>=0.5.0
