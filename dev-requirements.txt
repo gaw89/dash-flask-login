@@ -1,0 +1,4 @@
+# When installing dev dependencies also install the user dependencies
+-r requirements.txt
+
+pytest==7.0.0
