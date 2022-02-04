@@ -71,7 +71,7 @@ class FlaskLoginAuthTest(unittest.TestCase):
     def test_app_no_auth(self):
         response = self.server.get('/app1/', follow_redirects=True)
         self.assertEqual(response.status_code, 200)
-        self.assertTrue('<title>Dash</title>' in response.data)
+        self.assertTrue('<title>Dash</title>' in response.data.decode('utf-8'))
 
     def test_app_default_login_no_users(self):
 
