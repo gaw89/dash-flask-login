@@ -1,2 +1,3 @@
 include README.md
-recursive-include dash_flask_login/templates *
+
+global-exclude *.pyc

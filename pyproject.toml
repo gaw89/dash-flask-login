@@ -1,3 +1,4 @@
+# as required by https://packaging.python.org/en/latest/tutorials/packaging-projects/
 [build-system]
 requires = [
     "setuptools>=42",
