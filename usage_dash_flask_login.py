@@ -100,4 +100,4 @@ auth = FlaskLoginAuth(app)
 
 
 if __name__ == '__main__':
-    server.run_server(debug=True)
+    app.run_server(debug=True)
